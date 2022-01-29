@@ -1,0 +1,25 @@
+<canvas width="600" height="600"></canvas>
+<script>
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	var colores = ["blue", "red", "green"];
+	var indice_color = 0;
+
+	function DibujarCuadrado(x,y){
+			if(indice_color>2){
+					indice_color = 0;
+				}
+			pincel.fillStyle = colores[indice_color];
+			pincel.fillRect(x,y,50,50);
+			indice_color++;
+		}
+	function Coordenadas(evento){
+			var x = evento.pageX - pantalla.offsetLeft;
+			var y = evento.pageY - pantalla.offsetTop;
+			DibujarCuadrado(x-25,y-25);
+		}
+	pantalla.onclick = Coordenadas;
+	
+
+	
+</script>

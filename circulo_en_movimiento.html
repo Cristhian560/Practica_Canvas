@@ -1,0 +1,28 @@
+<canvas width="900" height="900"></canvas>
+<script>
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	
+	pincel.fillRect(0,0,900,900);
+	
+	var posicion_x = 20;
+
+	function DibujarCirculo(radio){
+			pincel.fillStyle = "red";
+			pincel.beginPath();
+			pincel.arc(posicion_x,20,radio,0,2*Math.PI);
+			pincel.fill();
+		}
+	function MoverCirculo(){
+			
+			if(posicion_x==900){
+					posicion_x=20;
+				}
+			pincel.clearRect(0,0,900,900);
+			DibujarCirculo(20);
+			posicion_x++;
+		}
+	
+
+	setInterval(MoverCirculo,10);
+</script>

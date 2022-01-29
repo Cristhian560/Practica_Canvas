@@ -1,0 +1,48 @@
+<canvas width="1000" height="1000"></canvas>
+<script>
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+
+	var coordenada_x = 0; 
+	var coordenada_y = 0; 
+	function DibujarBlanco(x,y,radio,color){ 
+			pincel.beginPath(); 
+			pincel.fillStyle = color; pincel.arc(x,y,radio,0,2*Math.PI); pincel.fill(); 
+		} 
+	function DibujarEnPosicionesAleatorias(){ 
+			coordenada_x = Math.round(Math.random()*500); 
+			coordenada_y = Math.round(Math.random()*500); 
+			Limpiar(); DibujarBlanco(coordenada_x,coordenada_y,20,"red"); 
+			DibujarBlanco(coordenada_x,coordenada_y,15,"white"); 
+			DibujarBlanco(coordenada_x,coordenada_y,10,"red"); 
+		} 
+	function Limpiar(){ 
+			pincel.clearRect(0,0,1000,1000); 
+		} 
+	function DioEnElBlanco(coord_x,coord_y){ 
+			var limite_inf_x = coord_x - 5 ; 
+			var limite_sup_x = coord_x + 5 ; 
+			var limite_inf_y = coord_y - 5 ; 
+			var limite_sup_y = coord_y + 5 ;
+			if(coordenada_x<limite_sup_x && coordenada_x > limite_inf_x && coordenada_y<limite_sup_y && coordenada_y > limite_inf_y){
+					return true;
+				}
+			else{
+					return false;
+				}
+		}
+	function Click(evento){
+			var x = evento.pageX - pantalla.offsetLeft;
+			var y = evento.pageY - pantalla.offsetTop;
+			if(DioEnElBlanco(x,y)){
+					alert("ganasteeee");
+				}
+			else{
+					alert("le erraste");
+				}
+		}
+
+	setInterval(DibujarEnPosicionesAleatorias,3000);
+	pantalla.onclick = Click;
+
+</script>

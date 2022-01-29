@@ -1,0 +1,29 @@
+<canvas width="500" height="500"></canvas>
+<script>
+ 	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	
+	var serie_2009 = [6, 47, 41, 3, 3];
+	var serie_2019 = [81, 9, 3, 3, 4];
+
+	var colores_ = ["blue","green","yellow", "red","gray"];
+	
+
+	function DibujarBarra(x,y,serie2009,colores){
+		for(var i = 0;i<serie2009.length;i++){
+			if(i>=1){
+			   	y+=serie2009[i-1]
+				}
+			DibujarRectangulo(x,y*3,colores[i],100,serie2009[i]*3);		
+			}
+		}
+	function DibujarRectangulo(x,y,color,ancho,alto){
+			pincel.fillStyle = color;
+			pincel.fillRect(x,y,ancho,alto);
+					
+		}
+	
+	DibujarBarra(100,0,serie_2009,colores_);
+	DibujarBarra(300,0,serie_2019,colores_);
+	
+</script>
